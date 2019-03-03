@@ -1,0 +1,42 @@
+/*
+######################################
+# CUSTOMIZAcao DE COMPONENTES
+######################################
+*/
+
+.checkbox input[type="checkbox"]:checked + input + label::after {
+    font-family: 'FontAwesome';
+    content: "\f00c"; 
+}
+
+/* Colunas - Pesquisa de usuarios */
+.table-usuarios-col-status {
+	width: 30px;
+	text-align: center;
+}
+
+/* Colunas comuns */
+.table-col-acoes {
+	width: 80px;
+}
+
+/* Tabela Simples */
+.sk-tabela-simples {
+	margin-top: 15px;
+}
+
+.sk-tabela-simples table tr th {
+	border-bottom-width: 1px;
+}
+
+.sk-tabela-simples table tr td {
+    border-top: none;
+    border-bottom: 1px solid #e7eaec;
+    padding: 10px;
+    vertical-align: middle;
+}
+
+/* utilidades*/
+.sk-required > .control-label:after {
+	content: "*"
+}

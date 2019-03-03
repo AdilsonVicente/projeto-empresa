@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html class="no-js css-menubar" lang="pt"
+      xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:skillus="http://analise.skillus.com.br"
+	  layout:decorate="~{layout/LayoutPadrao}">
+  <head>
+    
+    <title>Cadastro de Menu</title>
+    
+  </head>
+	   
+	<body class="animsition site-navbar-small dashboard">
+		
+		<section layout:fragment="conteudo">
+		
+		<div class="page">
+			<div class="page-header">
+				<div class="row">
+					<div class="col-xs-10">
+						<h1 class="page-title">Cadastro de Menu</h1>
+					</div>
+									
+						 <div class="page-header-actions">
+						 	<div class="col-xs-2">
+									<a class="btn btn-default" th:href="@{menu}">
+										<i class="glyphicon glyphicon-plus-sign"></i><span class="hidden-xs hidden-sm"> Pesquisa </span>
+									</a>
+	                      <!-- <button type="button" class="btn btn-sm btn-icon btn-primary btn-round" 
+	                                 data-toggle="tooltip" data-original-title="Pesquisar" th:href="@{/usuarios}">
+	                                 <i class="icon md-plus-sign" aria-hidden="true"></i>
+	                          </button>  --> 
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>   
+		    <div class="page-content">
+        		<!-- Panel Form Elements -->
+        		<div class="panel">
+         			<div class="panel-heading">
+         			 	<div class="container-fluid">
+
+						<form method="POST">
+								
+							<div class="row">
+								<div class="form-group  col-sm-6">
+									<label class="control-label" for="descricao">Descrição</label>
+									<input type="text" class="form-control" id="descricao" autofocus="autofocus"/>
+								</div>
+								
+								<div class="form-group  col-sm-6">
+									<label class="control-label" for="descricaoPy">Descrição PY</label>
+									<input type="text" class="form-control" id="descricaoPy"/>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="form-group  col-sm-4">
+									<label class="control-label" for="menuPai">Menu Pai</label>
+									<input type="text" class="form-control" id=menuPai autofocus="autofocus"/>
+								</div>
+								
+								<div class="form-group  col-sm-4">
+									<label class="control-label" for="url">URL</label>
+									<input type="text" class="form-control" id="url"/>
+								</div>
+								
+								<div class="form-group  col-sm-4">
+									<label class="control-label" for="permissao">Permissão</label>
+									<input type="text" class="form-control" id="permissao"/>
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group  col-sm-12">
+									<label class="control-label">Lista/Mostra nas permissões</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group  col-sm-4">
+									<label class="control-label" for="tipo">Tipo</label>
+									<input type="text" class="form-control" id=tipo autofocus="autofocus"/>
+								</div>
+								
+								<div class="form-group  col-sm-3">
+									<label class="control-label" for="guia">Guia</label>
+									<input type="text" class="form-control" id="guia"/>
+								</div>
+								
+								<div class="form-group  col-sm-3">
+									<label class="control-label" for="ordemMenu">Ordem do Menu</label>
+									<input type="text" class="form-control" id="ordemMenu"/>
+								</div>
+							<div class="form-group  col-sm-2">
+								<label class="control-label"></label>
+								<button class="btn btn-outline btn-primary" type="submit">
+                    				<i class="icon wb-plus" aria-hidden="true"></i> Alterar Ícone
+                 				 </button>
+                 			</div>
+							</div>
+							
+							
+								
+								<div class="form-group">
+									<button class="btn  btn-primary" type="submit">Salvar</button>
+								</div>
+		
+						</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</section>
+		 
+    
+</body>
+</html>

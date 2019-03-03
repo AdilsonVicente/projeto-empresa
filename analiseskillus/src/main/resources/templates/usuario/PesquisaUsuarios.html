@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html class="no-js css-menubar" lang="en"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:data="http://www.thymeleaf.org/extras/data"
+	  xmlns:skillus="http://analise.skillus.com.br"
+	  layout:decorate="~{layout/LayoutPadrao}"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+	   
+<head>
+	<title>Pesquisa de usuários</title>
+</head>
+
+<body>
+<section layout:fragment="conteudo">
+
+	<div class="page">
+		<div class="page-header">
+			<div class="row">
+				<div class="col-xs-10">
+					<h1 class="page-title">Pesquisa de Usuários</h1>
+				</div>
+									
+				<div class="page-header-actions">
+					<div class="col-xs-2">
+						<a class="btn btn-sm btn-default btn-outline btn-round" th:href="@{/usuarios/novo}">
+							<i class="icon wb-link" aria-hidden="true"></i>
+							<span class="hidden-sm-down">Novo Usuário </span>
+						</a>
+	                    <!-- <div class="page-header-actions">
+							          <a class="btn btn-sm btn-default btn-outline btn-round" href="http://datatables.net"
+							            target="_blank">
+							        <i class="icon wb-link" aria-hidden="true"></i>
+							        <span class="hidden-sm-down">Official Website</span>
+							      </a>
+							        </div>
+	                    
+	                    <button type="button" class="btn btn-sm btn-icon btn-primary btn-round" 
+	                              data-toggle="tooltip" data-original-title="Pesquisar" th:href="@{/usuarios}">
+	                              <i class="icon md-plus-sign" aria-hidden="true"></i>
+	                         </button>  --> 
+								
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>   
+	 <div class="page-content">
+        <!-- Panel Basic -->
+        <div class="panel">
+        	<header class="panel-heading">
+           	 <div class="panel-actions"></div>
+            
+						<form method="GET" th:object="${usuarioFilter}" th:action="@{/usuarios}">
+							<div class="row">
+								<div class="form-group  col-sm-6">
+									<label class="control-label" for="nome">Nome</label>
+									<input type="text" class="form-control" id="nome" autofocus="autofocus" th:field="*{nome}"/>
+								</div>
+								
+								<div class="form-group  col-sm-6">
+									<label class="control-label" for="email">E-mail</label>
+									<input type="text" class="form-control" id="email" th:field="*{email}"/>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="form-group  col-sm-12">
+									<label class="control-label">Grupos</label> 
+									<div>
+										<th:block th:each="grupo : ${grupos}">
+					  						<div class="checkbox  checkbox-primary"> 
+						    					<input type="checkbox" th:value="${grupo.codigo}" th:field="*{grupos}"/>
+						    					<label th:for="${#ids.prev('grupos')}" th:text="${grupo.nome}">Administrador</label>
+					    					</div>
+					    				</th:block>
+									</div>
+				  				</div>
+							</div>
+							
+							<!--<button type="submit" class="btn  btn-primary">Pesquisar</button>  -->
+							<button class="btn btn-outline btn-primary" type="submit">
+                    			<i class="icon wb-plus" aria-hidden="true"></i> Pesquisar
+                 			 </button>
+						</form>
+						
+						<div class="aw-datatable-toolbar">
+							<button class="btn btn-default  btn-xs  js-status-btn  disabled" data:status="ATIVAR" data:url="@{/usuarios/status}">
+								<span>Ativar</span>
+							</button>
+							
+							<button class="btn btn-default  btn-xs  js-status-btn  disabled" data:status="DESATIVAR" data:url="@{/usuarios/status}">
+								<span>Desativar</span>
+							</button>
+						</div>
+				
+						<div class="panel-body">
+				        	<table class="table table-bordered table-hover table-striped">
+					            <thead>
+					            	<tr>
+					            		<th class="gradeA">
+					            			<div class="checkbox-custom checkbox-default">
+					            				<input type="checkbox" class="js-selecao-todos"/>
+					            				<label></label>
+					            			</div>
+					            		</th>
+					            		<th>Nome</th>
+					                	<th>E-mail</th>
+					                	<th>Grupo</th>
+					                	<th>Status</th>
+					                	<th>Opção</th>
+									</tr>
+								</thead>
+							
+					            <tbody>
+									<tr th:each="usuario : ${pagina.conteudo}">
+										<td>
+											<div class="checkbox  checkbox-custom" th:if="${#authentication.principal.usuario.codigo != usuario.codigo}">
+					            				<input type="checkbox" class="js-selecao" data:codigo="${usuario.codigo}">
+					            				<label></label>
+					            			</div>
+										</td>
+										<td th:text="${usuario.nome}"></td>
+										<td th:text="${usuario.email}"></td>
+										<td>
+											<span th:each="grupo : ${usuario.grupos}" th:text="|${grupo.nome}${grupoStat.last ? '' : ', '}|"></span>
+										</td>
+										<td>
+											<th:block th:if="${usuario.ativo}">
+												<span class="label  label-success">Ativo</span>
+											</th:block>
+											<th:block th:unless="${usuario.ativo}">
+												<span class="label  label-danger">Inativo</span>
+											</th:block>
+										</td>
+					                 	<td class="text-center">
+										<!--<a class="btn  btn-link  btn-xs" title="Editar"> 
+												<i class="glyphicon glyphicon-pencil"></i>
+											</a>  -->	
+											
+											<a class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row" data-toggle="tooltip" 
+											   data-original-title="Edit"><i class="icon wb-edit" aria-hidden="true"></i></a>
+											   
+										    <a class="btn btn-sm btn-icon btn-pure btn-default on-editing cancel-row" data-toggle="tooltip" 
+											   data-original-title="Delete"><i class="icon wb-close" aria-hidden="true"></i></a>
+											      
+											<!--<a class="btn  btn-link  btn-xs" title="Excluir">
+												<i class="glyphicon glyphicon-remove"></i>
+											</a>  -->
+										</td>
+					                </tr>
+					                
+					                <tr th:if="${pagina.vazia}">
+					                	<td colspan="6">Nenhum usuário encontrado</td>
+					                </tr>
+					             </tbody>
+				         	</table>
+				    	 </div>
+				    		<skillus:pagination page="${pagina}"/>
+				</header>
+			</div>
+		</div>
+</section>
+		<th:block layout:fragment="javascript-extra">
+			<script th:src="@{/javascript/multiselecao.js}"></script>
+		</th:block>
+	</body>
+</html>

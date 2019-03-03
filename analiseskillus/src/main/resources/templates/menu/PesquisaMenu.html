@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html class="no-js css-menubar" lang="en"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:data="http://www.thymeleaf.org/extras/data"
+	  xmlns:skillus="http://analise.skillus.com.br"
+	  layout:decorate="~{layout/LayoutPadrao}"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+	   
+<head>
+	<title>Pesquisa de menu</title>
+</head>
+
+<body>
+<section layout:fragment="conteudo">
+
+	<div class="page">
+		<div class="page-header">
+			<div class="row">
+				<div class="col-xs-10">
+					<h1 class="page-title">Pesquisa de menu</h1>
+				</div>
+									
+				<div class="page-header-actions">
+					<div class="col-xs-2">
+						<a class="btn btn-sm btn-default btn-outline btn-round" th:href="@{menu/novo}">
+							<i class="icon wb-link" aria-hidden="true"></i>
+							<span class="hidden-sm-down">Novo menu </span>
+						</a>
+	                    <!-- <div class="page-header-actions">
+							          <a class="btn btn-sm btn-default btn-outline btn-round" href="http://datatables.net"
+							            target="_blank">
+							        <i class="icon wb-link" aria-hidden="true"></i>
+							        <span class="hidden-sm-down">Official Website</span>
+							      </a>
+							        </div>
+	                    
+	                    <button type="button" class="btn btn-sm btn-icon btn-primary btn-round" 
+	                              data-toggle="tooltip" data-original-title="Pesquisar" th:href="@{/usuarios}">
+	                              <i class="icon md-plus-sign" aria-hidden="true"></i>
+	                         </button>  --> 
+								
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>   
+	 <div class="page-content">
+        <!-- Panel Basic -->
+        <div class="panel">
+        	<header class="panel-heading">
+           	 <div class="panel-actions"></div>
+            
+						<form method="GET" th:object="${usuarioFilter}" th:action="@{/usuarios}">
+							<div class="row">
+								<div class="form-group  col-sm-6">
+									<label class="control-label" for="descricao">Descrição</label>
+									<input type="text" class="form-control" id="descricao" autofocus="autofocus"/>
+								</div>
+								
+								<div class="form-group  col-sm-6">
+									<label class="control-label" for="descricaoPy">Descrição PY</label>
+									<input type="text" class="form-control" id="descricaoPy"/>
+								</div>
+								
+							</div>
+							
+							<!--<button type="submit" class="btn  btn-primary">Pesquisar</button>  -->
+							<button class="btn btn-outline btn-primary" type="submit">
+                    			<i class="icon wb-plus" aria-hidden="true"></i> Pesquisar
+                 			 </button>
+						</form>
+						
+						<div class="panel-body">
+				        	<table class="table table-bordered table-hover table-striped">
+					            <thead>
+					            	<tr>
+					            		<th class="gradeA">
+					            			<div class="checkbox-custom checkbox-default">
+					            				<input type="checkbox" class="js-selecao-todos"/>
+					            				<label></label>
+					            			</div>
+					            		</th>
+					            		<th>Nome</th>
+					                	<th>Arquivo</th>
+									</tr>
+								</thead>
+							
+					            <tbody>
+									<tr>
+										<td>
+											<div class="checkbox  checkbox-custom">
+					            				<input type="checkbox" class="js-selecao">
+					            				<label></label>
+					            			</div>
+										</td>
+										
+					                 	<td class="text-center">
+										<!--<a class="btn  btn-link  btn-xs" title="Editar"> 
+												<i class="glyphicon glyphicon-pencil"></i>
+											</a>  -->	
+											
+											<a class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row" data-toggle="tooltip" 
+											   data-original-title="Edit"><i class="icon wb-edit" aria-hidden="true"></i></a>
+											   
+										    <a class="btn btn-sm btn-icon btn-pure btn-default on-editing cancel-row" data-toggle="tooltip" 
+											   data-original-title="Delete"><i class="icon wb-close" aria-hidden="true"></i></a>
+											      
+											<!--<a class="btn  btn-link  btn-xs" title="Excluir">
+												<i class="glyphicon glyphicon-remove"></i>
+											</a>  -->
+										</td>
+					                </tr>
+					                
+					             </tbody>
+				         	</table>
+				    	 </div>
+				</header>
+			</div>
+		</div>
+</section>
+		
+	</body>
+</html>

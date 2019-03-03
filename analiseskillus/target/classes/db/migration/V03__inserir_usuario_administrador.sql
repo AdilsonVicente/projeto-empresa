@@ -1,0 +1,1 @@
+INSERT INTO usuario (nome, email, senha, ativo) VALUES('admin', 'admin@skillus.com', '$2a$10$xch3hMMSZhCE5n8GPdWjhOKLxUPYX.lmTYQZEgMRFzI6HILOeznAu', 1)
